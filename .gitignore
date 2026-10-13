@@ -1,0 +1,10 @@
+# Downloaded competition files and extracted images stay on each machine.
+data/
+imgs.zip
+imgs/
+driver_imgs_list.csv
+sample_submission.csv
+
+# Local Kaggle credentials and environment settings.
+kaggle.json
+.env
