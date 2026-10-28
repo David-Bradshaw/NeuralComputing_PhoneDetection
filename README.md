@@ -22,6 +22,18 @@ This Neural Computing group project will train a CNN to classify a driver image 
 
 The `data/` directory is ignored by Git. Each group member should download the dataset to their own machine or Colab environment; do not commit the image files or archive to GitHub. Keep Kaggle API tokens out of the repository too.
 
+The notebook uses the existing `data/state-farm/` files when present. Otherwise it downloads the competition with KaggleHub. In Colab, add your own `KAGGLE_API_TOKEN` secret and enable notebook access before running; locally, configure Kaggle authentication in your environment. The notebook never contains a token.
+
+In Colab, the results setup cell mounts the runner's Google Drive and saves fold CSV histories and checkpoints under `MyDrive/CS4287_PhoneDetection_results/`. Authorize the mount when prompted. Completed epochs survive a runtime reset, but the current unfinished epoch does not, and the notebook does not automatically resume from a checkpoint. Outside Colab, output goes to `training_results/`, which is ignored by Git. A lecturer running in Colab will mount their own Drive, not yours.
+
+## Local AdamW comparison
+
+Open `CS4287_Assign1_23363819_23362227_23377569_local_AdamW.ipynb` in VS Code and select the `Python (CS4287 AdamW local GPU)` kernel. The prepared environment is in `.venv/` and is ignored by Git; another machine must create its own environment. The local notebook uses the extracted dataset above and writes its outputs to `training_results/adamw_local/`.
+
+The local AdamW notebook uses learning rate 0.001, betas (0.9, 0.99), batch size 32, and 25 epochs across five folds, matching the Adam settings in the group notebook. AdamW uses weight decay 0.0001. The local folds are pinned to the saved Colab fold sizes and driver groups; verify the current Colab Adam run uses the same folds before comparing validation metrics. Run the one-epoch timing cell before starting the full run to estimate its duration on this PC.
+
+The separate `CS4287_Assign1_23363819_23362227_23377569_local_Adam.ipynb` uses the same local dataset and folds with Adam (`weight_decay=0`) and writes to `training_results/adam_local/`. Select the `Python (CS4287 Adam local GPU)` kernel in VS Code. Both local notebooks use the same `.venv`, but each starts its own model and training run.
+
 For our binary task, classes `c1`-`c4` mean texting or talking on a phone; `c0` and `c5`-`c9` mean another activity. Use the driver IDs in `driver_imgs_list.csv` to keep the same driver out of both training and test splits.
 
 ## Keep notebook commits clean

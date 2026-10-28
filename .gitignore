@@ -4,6 +4,8 @@ imgs.zip
 imgs/
 driver_imgs_list.csv
 sample_submission.csv
+training_results/
+.venv/
 
 # Local Kaggle credentials and environment settings.
 kaggle.json
